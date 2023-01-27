@@ -13,14 +13,16 @@ export const discordMessages = (event: DaoEvents) => {
   switch (event.eventType) {
     case "AuctionCreated":
       return createMessageAuctionCreatedDiscord(event);
-    case "AuctionBid":
-      return createMessageAuctionBidDiscord(event);
+    // case "AuctionBid":
+    //   return createMessageAuctionBidDiscord(event);
     case "AuctionSettled":
       return createMessageAuctionSettledDiscord(event);
     case "ProposalCreated":
       return createMessageProposalCreatedDiscord(event);
-    case "DaoDeployed":
-      return createMessageDaoDeployedDiscord(event);
+    // case "DaoDeployed":
+    //   return createMessageDaoDeployedDiscord(event);
+    default:
+      return false;
   }
 };
 

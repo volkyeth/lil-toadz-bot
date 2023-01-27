@@ -31,19 +31,23 @@ const tick = async () => {
 
     const events = await fetchEvents(startBlock, endBlock);
     for (const i in events) {
-      const message = twitterMessages(events[i]);
+      const twitterMessage = twitterMessages(events[i]);
 
-      if (message) {
+      if (twitterMessage) {
         twitterClient.tweetsV2
             .createTweet({
-              text: await message,
+              text: await twitterMessage,
             })
             .catch((err) => console.log(err));
       }
 
-      (
-        discordBot.channels.cache.get(process.env.APPLICATION_ID) as TextChannel
-      ).send({ embeds: [await discordMessages(events[i])] });
+      const discordMessage = discordMessages(events[i]);
+
+      if (discordMessage) {
+        (
+            discordBot.channels.cache.get(process.env.APPLICATION_ID) as TextChannel
+        ).send({embeds: [await discordMessage]});
+      }
     }
 
     redisClient.set("block", endBlock + 1, redis.print);
