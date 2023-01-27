@@ -12,14 +12,14 @@ export const twitterMessages = (event: DaoEvents) => {
   switch (event.eventType) {
     case "AuctionCreated":
       return createMessageAuctionCreatedTwitter(event);
-    case "AuctionBid":
-      return createMessageAuctionBidTwitter(event);
+    // case "AuctionBid":
+    //   return createMessageAuctionBidTwitter(event);
     case "AuctionSettled":
       return createMessageAuctionSettledTwitter(event);
     case "ProposalCreated":
       return createMessageProposalCreatedTwitter(event);
-    case "DaoDeployed":
-      return createMessageDaoDeployedTwitter(event);
+    // case "DaoDeployed":
+    //   return createMessageDaoDeployedTwitter(event);
   }
 };
 

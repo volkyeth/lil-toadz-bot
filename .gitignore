@@ -1,3 +1,6 @@
 .env
 node_modules/
 dump.rdb
+
+# IDE files
+.idea
