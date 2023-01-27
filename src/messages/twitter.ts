@@ -20,6 +20,8 @@ export const twitterMessages = (event: DaoEvents) => {
       return createMessageProposalCreatedTwitter(event);
     // case "DaoDeployed":
     //   return createMessageDaoDeployedTwitter(event);
+    default:
+      return false;
   }
 };
 

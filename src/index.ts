@@ -31,11 +31,16 @@ const tick = async () => {
 
     const events = await fetchEvents(startBlock, endBlock);
     for (const i in events) {
-      twitterClient.tweetsV2
-        .createTweet({
-          text: await twitterMessages(events[i]),
-        })
-        .catch((err) => console.log(err));
+      const message = twitterMessages(events[i]);
+
+      if (message) {
+        twitterClient.tweetsV2
+            .createTweet({
+              text: await message,
+            })
+            .catch((err) => console.log(err));
+      }
+
       (
         discordBot.channels.cache.get(process.env.APPLICATION_ID) as TextChannel
       ).send({ embeds: [await discordMessages(events[i])] });
